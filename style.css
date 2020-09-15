@@ -1,0 +1,62 @@
+.automata{
+	border: 1px solid black;
+	height: 100vh;
+	width: 50vw;
+	min-width: 500px;
+	background-color: gray;
+	padding: 10px;
+}
+
+.bal, .jobb{
+	height: 100%;
+	float: left;
+}
+
+.bal{
+	width: 60%;
+	background-color: lightblue;
+}
+
+.jobb{
+	width: 40%;
+	background-color: black;
+}
+
+.kepernyo{
+	width: 90%;
+	height: 50px;
+	background-color: darkgreen;
+	margin: auto;
+	margin-top: 50px;
+	
+	text-align: center;
+	font-size: 30px;
+	color: yellow;
+}
+
+.gombok{
+	width: 90%;
+	height: 150px;
+	border: 2px solid white;
+	margin: auto;
+}
+
+.jobb button {
+	
+	width: 100px;
+	margin-top: 10px;
+	margin-left: calc(50% - 50px);
+}
+
+.gombok button{
+	width: calc(100% / 3);
+	float: left;
+	margin:0px;
+	height: 40px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.bal img{
+	width: calc(100%/3);
+}
