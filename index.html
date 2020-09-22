@@ -1,48 +1,85 @@
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Üdítőautomata</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-	
+
+	<div id="penz"></div>
 	<div class="container automata">
 		<div class="bal" id="bal"></div>
-		
+
 		<div class="jobb">
 			<div class="kepernyo" id="kepernyo"> </div>
 			<div class="gombok" id="gombok"> </div>
-			<button>OK</button>
-		</div>
-	
-	</div>
+			<button onclick="vasarlas()">OK</button>
 
+			<div class="tarolo" id="tarolo"></div>
+		</div>
+	</div>
 	<script>
-	
+
 		// GOMBOK LÉTREHOZÁSA ÉS KEZELÉSE
 		let gomb_tarolo = document.getElementById("gombok");
-		
-		for(let i = 1; i <= 9; i++){
-			gomb_tarolo.innerHTML += '<button onclick="katt('+i+')" >' + i + '</button>'
-		}
-		
-		
-		function katt(szam){
-			document.getElementById("kepernyo").innerHTML = szam;
-		}
-		
-		// ÜDÍTŐK FELPAKOLÁSA
+		let kivalasztott = -1;
 		let uditok = document.getElementById("bal");
-		
-		for(let i = 0; i < 3; i++){
-			
-			uditok.innerHTML += '<img src="cocacola.png">';
-		
+		let udito_kepek = [
+			"apenta.jpg",
+			"cocacola.png",
+			"cola.jpg",
+			"hellkave.jpg",
+			"kinley.jpg",
+			"marka.jpg"
+		];
+
+		let udito_arak = [
+			150,
+			280,
+			300,
+			290,
+			1000,
+			100
+		];
+
+		let penz = 2000;
+		document.getElementById("penz").innerHTML = penz + " Ft";
+
+		for (let i = 1; i <= 9; i++) {
+			gomb_tarolo.innerHTML += '<button onclick="katt(' + i + ')" >' + i + '</button>'
 		}
-		
-		
+
+		function katt(szam) {
+			document.getElementById("kepernyo").innerHTML = szam;
+			kivalasztott = szam;
+		}
+
+		function vasarlas() {
+			if (udito_kepek[kivalasztott - 1] == undefined) {
+				document.getElementById("kepernyo").innerHTML = "Elfogyott!";
+			} else {				
+				if(penz - udito_arak[kivalasztott - 1] < 0){
+					document.getElementById("kepernyo").innerHTML = "Tul draga!";
+				}else{
+					penz -= udito_arak[kivalasztott - 1];
+					document.getElementById("penz").innerHTML = penz + " Ft";
+					document.getElementById("tarolo").innerHTML = '<img src="' + udito_kepek[kivalasztott - 1] + '">';
+				}
+			}
+		}
+
+		// ÜDÍTŐK FELPAKOLÁSA
+
+		for (let i = 0; i < udito_kepek.length; i++) {
+			uditok.innerHTML += 
+			'<div><img src="' + udito_kepek[i] + '">' + (i + 1) + '<br>' + udito_arak[i] + 'Ft</div>';
+		}
+
+
 	</script>
 </body>
 
